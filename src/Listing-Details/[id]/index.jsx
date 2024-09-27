@@ -11,7 +11,7 @@ import Description from '../components/Description';
 import Features from '../components/Features';
 import Pricing from '../components/Pricing';
 import Specification from '../components/Specification';
-import OwnerDetails from '../components/ownerDetails';
+import OwnerDetails from '../components/OwnerDetails';
 import FinancialCalculator from '../components/FinancialCalculator';
 import Footer from '@/components/Footer';
 import MostSearchedCar from '@/components/MostSearchedCar';
