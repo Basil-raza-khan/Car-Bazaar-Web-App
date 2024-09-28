@@ -7,7 +7,7 @@ function Hero() {
   const [rotateTires, setRotateTires] = useState(false); 
 
   useEffect(() => {
-    setIsLoaded(true);
+    setIsLoaded(true)
 
     const timer = setTimeout(() => {
       setRotateTires(true);
