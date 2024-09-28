@@ -1,6 +1,15 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion, useAnimation } from "framer-motion";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+
 
 function PreOwned() {
   const [backgroundImage, setBackgroundImage] = useState(
@@ -69,13 +78,15 @@ function PreOwned() {
 
   return (
     <div
-      className="w-full h-screen bg-center bg-cover transition-all duration-1000"
-      style={{
-        backgroundImage: `url(${backgroundImage})`,
-        backgroundColor: "rgba(0,0,0,0.4)",
-        backgroundBlendMode: "multiply",
-      }}
-    >
+    className="w-full h-screen justify-center bg-cover bg-center items-center transition-all duration-1000"
+    style={{
+      backgroundImage: `url(${backgroundImage})`,
+      backgroundColor: "rgba(0,0,0,0.4)",
+      backgroundBlendMode: "multiply",
+    }}
+  >
+  
+  
       <nav className="fixed top-0 left-0 w-full flex items-center py-4 px-4 md:px-8">
         <div className="flex items-center justify-between w-full">
           <h1 className="text-white text-2xl md:text-3xl font-black hover:text-blue-200 transition duration-300">
@@ -87,46 +98,54 @@ function PreOwned() {
             </Link>
           </h1>
 
-          {/* Hamburger Icon for Mobile View */}
-          <button onClick={toggleNavbar} className="md:hidden text-white">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
-            </svg>
-          </button>
-        </div>
+          {/* Dropdown Menu for Mobile View */}
+          <div className="md:hidden text-white">
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
+                  </svg>
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                {Object.keys(carSpecs).map((model) => (
+                  <DropdownMenuItem key={model} onSelect={() => changeModel(model)}>
+                    {model}
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
 
-        {/* Navbar Links */}
-        <ul
-          className={`absolute md:static top-full left-0 w-full md:flex md:items-center md:bg-transparent bg-gray-800 md:bg-transparent transition-all duration-300 ${isNavbarOpen ? "block" : "hidden md:block"}`}
-        >
-          {Object.keys(carSpecs).map((model) => (
-            <li key={model} className="block md:inline-block mx-2 md:mx-5 text-white text-lg hover:underline hover:text-emerald-500">
-              <a
-                href="#"
-                className="hover:scale-105 transition-all cursor-pointer"
-                onClick={() => {
-                  changeModel(model);
-                  setIsNavbarOpen(false); // Close the navbar on model selection
-                }}
-              >
-                {model}
-              </a>
-            </li>
-          ))}
-        </ul>
+          {/* Navbar Links for Desktop View */}
+          <ul className="hidden md:flex md:items-center md:bg-transparent">
+            {Object.keys(carSpecs).map((model) => (
+              <li key={model} className="mx-2 md:mx-5 text-white text-lg hover:underline hover:text-emerald-500">
+                <a
+                  href="#"
+                  className="hover:scale-105 transition-all cursor-pointer"
+                  onClick={() => changeModel(model)}
+                >
+                  {model}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
       </nav>
 
       {/* Car Specs Section */}
-      <div className="w-full flex flex-col sm:flex-row justify-center items-center absolute bottom-12 px-4 md:px-8 text-white">
+      <div className="w-full flex sm:flex-row justify-center items-center absolute bottom-12 px-4 md:px-8 text-white">
         {/* Wrap the specs in a single row for mobile view */}
-        <div className="flex flex-col sm:flex-row justify-center items-center">
-          <div className="mx-2 sm:mx-5 text-center">
+        <div className="flex sm:flex-row justify-center items-center">
+          <div className="mx-5 sm:mx-5 text-center">
             <motion.h2
               className="text-3xl md:text-4xl font-light"
               animate={accelerationControls}
@@ -162,6 +181,7 @@ function PreOwned() {
           <h2 className="text-3xl md:text-4xl font-bold">{currentModel}</h2>
         </div>
       </div>
+      
     </div>
   );
 }
