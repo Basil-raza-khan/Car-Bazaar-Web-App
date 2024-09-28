@@ -38,7 +38,7 @@ function SearchByOption() {
   return (
     <div>
     <Header/>
-    <div className='p-11 bg-blue-200 justify-center flex'>
+    <div className='p-11 bg-gradient-to-r from-blue-400 to-blue-600 justify-center flex'>
         <Search/>
     </div>
     <div className='p-10 md:px-20 '>
@@ -51,7 +51,7 @@ function SearchByOption() {
                 </div>
             )):
             [1,2,3,4,5,6].map((item,index)=>(
-                <div className='h-[370px] rounded-xl bg-slate-200 animate-pulse' key={index}></div>
+                <div className='h-[370px] rounded-xl bg-gradient-to-r from-blue-400 to-blue-200 animate-pulse' key={index}></div>
             ))
             }
         </div>
