@@ -24,7 +24,7 @@ function Hero() {
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 30 }}
         transition={{ duration: 0.8, delay: 0.2, ease: "linear"}}
-        className="text-lg"
+        className="text-sm"
       >
         Find your dream car for sale and for rent near you
       </motion.h2>
@@ -34,7 +34,7 @@ function Hero() {
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: isLoaded ? 1 : 0, scale: isLoaded ? 1 : 0.8 }}
         transition={{ duration: 0.8, delay: 0.4, ease: "linear"}}
-        className="text-[40px] md:text-[60px] font-bold text-center"
+        className="text-[35px] md:text-[60px] font-bold text-center"
       >
         Find your dream car
       </motion.h2>

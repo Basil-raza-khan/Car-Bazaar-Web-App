@@ -25,13 +25,13 @@ function MostSearchedCar() {
       .select()
       .from(CarListing)
       .leftJoin(CarImages, eq(CarListing.id, CarImages.carListingId));
-    
+
     const res = Service.FormatResult(result);
     setCarList(res);
   };
 
   return (
-    <div className="mx-4 md:mx-24">
+    <div className="mx-4 md:mx-24 relative">
       <h2 className="font-bold text-3xl text-center mt-16 mb-7">
         Most Searched Car
       </h2>
@@ -39,15 +39,18 @@ function MostSearchedCar() {
       <Carousel>
         <CarouselContent className="flex gap-4">
           {carList.map((car, index) => (
-            <CarouselItem key={index} className="flex justify-center flex-grow md:basis-1/4">
+            <CarouselItem
+              key={index}
+              className="flex justify-center flex-grow md:basis-1/4"
+            >
               <div className="w-full max-w-[250px] md:max-w-[300px] lg:max-w-[400px]">
                 <CarItems car={car} />
               </div>
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious />
-        <CarouselNext />
+        <CarouselPrevious className="absolute top-1/2 left-0 transform -translate-y-1/2" />
+        <CarouselNext className="absolute top-1/2 right-0 transform -translate-y-1/2" />
       </Carousel>
     </div>
   );
