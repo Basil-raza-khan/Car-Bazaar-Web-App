@@ -18,12 +18,12 @@ function Hero() {
   }, []);
 
   return (
-    <div className="relative flex flex-col items-center py-16 gap-6 h-[720px] w-full bg-[#a7b6ff] overflow-hidden">
+    <div className="relative flex flex-col items-center py-16 gap-6 h-[720px] w-full bg-gradient-to-r from-blue-400 to-blue-600 overflow-hidden">
       {/* Animated Heading 1 */}
       <motion.h2
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 30 }}
-        transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+        transition={{ duration: 0.8, delay: 0.2, ease: "linear"}}
         className="text-lg"
       >
         Find your dream car for sale and for rent near you
@@ -33,7 +33,7 @@ function Hero() {
       <motion.h2
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: isLoaded ? 1 : 0, scale: isLoaded ? 1 : 0.8 }}
-        transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+        transition={{ duration: 0.8, delay: 0.4, ease: "linear"}}
         className="text-[40px] md:text-[60px] font-bold text-center"
       >
         Find your dream car
@@ -43,7 +43,7 @@ function Hero() {
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 50 }}
-        transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
+        transition={{ duration: 0.8, delay: 0.6, ease: [0.175, 0.885, 0.32, 1]}}
         className="w-full flex justify-center items-center px-4"
       >
         <Search />
@@ -57,7 +57,7 @@ function Hero() {
           scale: isLoaded ? 1 : 0.8,
           x: isLoaded ? 0 : 100,
         }}
-        transition={{ duration: 1, delay: 0.8, ease: "easeOut" }}
+        transition={{ duration: 1, delay: 0.8, ease: [0.175, 0.885, 0.32, 1]}}
         className="relative mt-4"
       >
         <img
@@ -74,7 +74,7 @@ function Hero() {
           animate={rotateTires ? { rotate: 360 } : {}} // Conditional rotation
           transition={{
             repeat: rotateTires ? Infinity : 0, // Rotate only if `rotateTires` is true
-            duration: 3,
+            duration: 5,
             ease: "linear",
           }}
           style={{ transformOrigin: "center" }}
@@ -88,7 +88,7 @@ function Hero() {
           animate={rotateTires ? { rotate: 360 } : {}} // Conditional rotation
           transition={{
             repeat: rotateTires ? Infinity : 0, // Rotate only if `rotateTires` is true
-            duration: 3,
+            duration: 5,
             ease: "linear",
           }}
           style={{ transformOrigin: "center" }}

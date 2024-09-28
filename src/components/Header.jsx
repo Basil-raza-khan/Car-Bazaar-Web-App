@@ -25,7 +25,7 @@ function Header() {
         <li className='font-medium hover:scale-105 transition-all cursor-pointer hover:text-primary'><Link to="/">Home</Link></li>
         <li className='font-medium hover:scale-105 transition-all cursor-pointer hover:text-primary'>Search</li>
         <li className='font-medium hover:scale-105 transition-all cursor-pointer hover:text-primary'>New</li>
-        <li className='font-medium hover:scale-105 transition-all cursor-pointer hover:text-primary'>Preowned</li>
+        <li className='font-medium hover:scale-105 transition-all cursor-pointer hover:text-primary'><Link to={"/preowned"}>Preowned</Link></li>
       </ul>
       {/* <SignInButton mode='modal' forceRedirectUrl='/'>
                       <Button>Submit Listing</Button>

@@ -10,6 +10,7 @@ import { Toaster } from 'sonner'
 import SearchByCategory from './search/[category]'
 import SearchByOption from './search'
 import ListingDetails from './Listing-Details/[id]'
+import PreOwned from './components/ui/PreOwned'
 const router = createBrowserRouter([
   {
     path: "/",
@@ -23,13 +24,13 @@ const router = createBrowserRouter([
     path: "/add-listing",
     element: <AddListing />
   },
-  // {
-  //   path: "/car-details/:id", // Add the new route
-  //   element: <CarDetails />
-  // },
   {
     path: "/search", 
     element: <SearchByOption />
+  },
+  {
+    path: "/preowned", 
+    element: <PreOwned />
   },
   {
     path: "/search/:category", 
