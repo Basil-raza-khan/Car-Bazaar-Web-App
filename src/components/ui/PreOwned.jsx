@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion, useAnimation } from "framer-motion";
 
@@ -10,6 +10,7 @@ function PreOwned() {
   const [acceleration, setAcceleration] = useState(1.9);
   const [topSpeed, setTopSpeed] = useState(200);
   const [maxRange, setMaxRange] = useState(396);
+  const [isNavbarOpen, setIsNavbarOpen] = useState(false); // State for navbar visibility
 
   const carSpecs = {
     "Model S": {
@@ -62,6 +63,10 @@ function PreOwned() {
     setMaxRange(specs.maxRange);
   };
 
+  const toggleNavbar = () => {
+    setIsNavbarOpen((prev) => !prev); // Toggle the navbar visibility
+  };
+
   return (
     <div
       className="w-full h-screen bg-center bg-cover transition-all duration-1000"
@@ -71,93 +76,90 @@ function PreOwned() {
         backgroundBlendMode: "multiply",
       }}
     >
-      <nav className="fixed top-0 left-0 w-full flex items-center py-4 px-8">
-        <h1 className="text-white text-3xl font-black hover:text-blue-200 transition duration-300">
-        <Link to="/">Car Bazaar</Link>
-        </h1>
-        <ul className="flex-1 text-center">
-          <li className="inline-block mx-5 text-white text-xl hover:text-blue-200">
-            <Link to="/">Home</Link>
-          </li>
-          <li className="inline-block mx-5">
-            <a
-              href="#"
-              className="text-white text-lg  hover:underline hover:text-emerald-500 ease-linear"
-              onClick={() => changeModel("Model S")}
+      <nav className="fixed top-0 left-0 w-full flex items-center py-4 px-4 md:px-8">
+        <div className="flex items-center justify-between w-full">
+          <h1 className="text-white text-2xl md:text-3xl font-black hover:text-blue-200 transition duration-300">
+            <Link to="/">
+              <div className="flex items-center justify-center gap-2">
+                <img src="/logo.svg" alt="" width={40} height={40} />
+                Car Bazaar
+              </div>
+            </Link>
+          </h1>
+
+          {/* Hamburger Icon for Mobile View */}
+          <button onClick={toggleNavbar} className="md:hidden text-white">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
             >
-              Model S
-            </a>
-          </li>
-          <li className="inline-block mx-5">
-            <a
-              href="#"
-              className="text-white text-lg hover:underline hover:text-emerald-500 ease-linear"
-              onClick={() => changeModel("Model 3")}
-            >
-              Model 3
-            </a>
-          </li>
-          <li className="inline-block mx-5">
-            <a
-              href="#"
-              className="text-white text-lg  hover:underline hover:text-emerald-500 ease-linear"
-              onClick={() => changeModel("Model X")}
-            >
-              Model X
-            </a>
-          </li>
-          <li className="inline-block mx-5">
-            <a
-              href="#"
-              className="text-white text-lg  hover:underline hover:text-emerald-500 ease-linear"
-              onClick={() => changeModel("Model Y")}
-            >
-              Model Y
-            </a>
-          </li>
-        </ul>
-        <a
-          href="#"
-          className="text-white border border-white py-2 px-6 rounded-full hover:bg-white hover:text-black transition duration-300"
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
+            </svg>
+          </button>
+        </div>
+
+        {/* Navbar Links */}
+        <ul
+          className={`absolute md:static top-full left-0 w-full md:flex md:items-center md:bg-transparent bg-gray-800 md:bg-transparent transition-all duration-300 ${isNavbarOpen ? "block" : "hidden md:block"}`}
         >
-          Reserve Now
-        </a>
+          {Object.keys(carSpecs).map((model) => (
+            <li key={model} className="block md:inline-block mx-2 md:mx-5 text-white text-lg hover:underline hover:text-emerald-500">
+              <a
+                href="#"
+                className="hover:scale-105 transition-all cursor-pointer"
+                onClick={() => {
+                  changeModel(model);
+                  setIsNavbarOpen(false); // Close the navbar on model selection
+                }}
+              >
+                {model}
+              </a>
+            </li>
+          ))}
+        </ul>
       </nav>
 
-      <div className="w-full flex justify-center items-center absolute bottom-12 px-8 text-white">
-        <div className="mx-5 text-center">
-          <motion.h2
-            className="text-4xl font-light"
-            animate={accelerationControls}
-            transition={{ duration: 1, ease: "easeOut" }}
-          >
-            {acceleration}s
-          </motion.h2>
-          <p>60 mph</p>
+      {/* Car Specs Section */}
+      <div className="w-full flex flex-col sm:flex-row justify-center items-center absolute bottom-12 px-4 md:px-8 text-white">
+        {/* Wrap the specs in a single row for mobile view */}
+        <div className="flex flex-col sm:flex-row justify-center items-center">
+          <div className="mx-2 sm:mx-5 text-center">
+            <motion.h2
+              className="text-3xl md:text-4xl font-light"
+              animate={accelerationControls}
+              transition={{ duration: 1, ease: "easeOut" }}
+            >
+              {acceleration}s
+            </motion.h2>
+            <p className="text-sm md:text-base">60 mph</p>
+          </div>
+          <div className="mx-2 sm:mx-5 text-center">
+            <motion.h2
+              className="text-3xl md:text-4xl font-light"
+              animate={topSpeedControls}
+              transition={{ duration: 1, ease: "easeOut" }}
+            >
+              {topSpeed} mph
+            </motion.h2>
+            <p className="text-sm md:text-base">Top Speed</p>
+          </div>
+          <div className="mx-2 sm:mx-5 text-center">
+            <motion.h2
+              className="text-3xl md:text-4xl font-light"
+              animate={maxRangeControls}
+              transition={{ duration: 1, ease: "easeOut" }}
+            >
+              {maxRange} mi
+            </motion.h2>
+            <p className="text-sm md:text-base">Max Range</p>
+          </div>
         </div>
-        <div className="mx-5 text-center">
-          <motion.h2
-            className="text-4xl font-light"
-            animate={topSpeedControls}
-            transition={{ duration: 1, ease: "easeOut" }}
-          >
-            {topSpeed} mph
-          </motion.h2>
-          <p>Top Speed</p>
-        </div>
-        <div className="mx-5 text-center">
-          <motion.h2
-            className="text-4xl font-light"
-            animate={maxRangeControls}
-            transition={{ duration: 1, ease: "easeOut" }}
-          >
-            {maxRange} mi
-          </motion.h2>
-          <p>Max Range</p>
-        </div>
-        <div className="flex-1 mx-5 bg-white h-1"></div>
-        <div className="mx-5 text-center">
-          <h2 className="text-4xl font-bold">{currentModel}</h2>
+        <div className="flex-1 mx-2 sm:mx-5 bg-white h-1"></div>
+        <div className="mx-2 sm:mx-5 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold">{currentModel}</h2>
         </div>
       </div>
     </div>

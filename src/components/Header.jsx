@@ -34,15 +34,15 @@ function Header() {
 
       {isSignedIn ? (
         <div className='flex items-center gap-5'>
-          <UserButton/>
+          <UserButton />
           <Link to={"/profile"}>
-            <Button>Submit Listing</Button>
+            <Button className="text-md">Submit Listing</Button>
           </Link>
         </div>
       ) : (
         // <Button>Submit Listing</Button>
         <SignInButton mode='modal' redirectUrl='/profile'>
-          <Button>Submit Listing</Button>
+          <Button className="text-md">Submit Listing</Button>
         </SignInButton>
       )}
 
