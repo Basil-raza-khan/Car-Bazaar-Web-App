@@ -7,6 +7,8 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Service from '@/Shared/Service';
 import CarItems from '@/components/CarItems';
+import AnimatedSection from '@/AnimatedSection';
+import Footer from '@/components/Footer';
 
 function SearchByCategory() {
     const { category } = useParams();
@@ -50,12 +52,14 @@ function SearchByCategory() {
                     <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-7 gap-5'>
                         {carList.map((item, index) => (
                             <div key={index} className='w-full'>
-                                <CarItems car={item} />
+                                <AnimatedSection><CarItems car={item} /></AnimatedSection>
+                                
                             </div>
                         ))}
                     </div>
                 )}
             </div>
+            <Footer/>
         </div>
     );
 }

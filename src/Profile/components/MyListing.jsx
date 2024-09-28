@@ -19,6 +19,7 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import AnimatedSection from "@/AnimatedSection";
 
 function MyListing() {
     const { user } = useUser();
@@ -80,7 +81,8 @@ function MyListing() {
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-7 gap-4 md:gap-5">
                 {carList.map((item, index) => (
                     <div key={index} className="flex flex-col">
-                        <CarItems car={item} className="shadow-md" />
+                        <AnimatedSection><CarItems car={item} className="shadow-md" /></AnimatedSection>
+                        
                         <div className="p-2 shadow-lg flex rounded-lg justify-between gap-3 mt-2">
                             <Link to={'/add-listing?mode=edit&id=' + item?.id} className="w-full">
                                 <Button variant="outline" className="w-full text-lg"><FaEdit /></Button>

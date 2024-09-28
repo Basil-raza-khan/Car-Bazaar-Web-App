@@ -3,6 +3,7 @@ import React from "react";
 import MyListing from "./components/MyListing";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import Inbox from "./components/Inbox";
+import AnimatedSection from "@/AnimatedSection";
 
 function Profile() {
   return (
@@ -16,7 +17,9 @@ function Profile() {
             <TabsTrigger value="profile">Profile</TabsTrigger>
           </TabsList>
           <TabsContent value="my-listing">
-            <MyListing />
+            <AnimatedSection>
+              <MyListing />
+            </AnimatedSection>
           </TabsContent>
           <TabsContent value="inbox"><Inbox/></TabsContent>
           <TabsContent value="profile">Profile</TabsContent>

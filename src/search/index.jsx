@@ -7,6 +7,7 @@ import Search from '@/components/Search';
 import CarItems from '@/components/CarItems';
 import Header from '@/components/Header';
 import { db } from './../../configs';
+import AnimatedSection from '@/AnimatedSection';
 
 function SearchByOption() {
 
@@ -47,7 +48,8 @@ function SearchByOption() {
         <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-7 gap-5'>
             {carList?.length>0? carList.map((item,index)=>(
                 <div key={index}>
-                    <CarItems car={item}/>
+                    <AnimatedSection><CarItems car={item}/></AnimatedSection>
+                    
                 </div>
             )):
             [1,2,3,4,5,6].map((item,index)=>(

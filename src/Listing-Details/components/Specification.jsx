@@ -7,7 +7,7 @@ function Specification({carDetail}) {
     <div className='p-10 rounded-xl border shadow-md mt-7'>
         <h2 className='font-medium text-2xl'>Specification</h2>
         {carDetail? carSpecification?.map((item,index)=>(
-            <div key={index} className='mt-5 flex items-center justify-between'>                
+            <div key={index} className='mt-5 flex items-center justify-between gap-8'>                
                 <h2  className='flex gap-2'><IconField icon={item.icon}/>{item?.label}</h2>
                 <h2>{carDetail?.[item?.name]}</h2>
             </div>
