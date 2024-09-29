@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Car Bazaar</title>
+    
 </head>
 <body>
     <h1>Car Bazaar</h1>
@@ -12,7 +12,7 @@
   <h2>🚀 Live Demo</h2>
     <p>Explore the live application here: <a href="https://car-bazaar-web-app-live.vercel.app/">Car Bazaar</a></p>
 
-  h2>📂 Repository</h2>
+  <h2>📂 Repository</h2>
     <p>Access the project repository on GitHub: <a href="https://github.com/Basil-raza-khan/car-bazaar-web-app">Car Bazaar GitHub</a></p>
 
   <h2>📜 Table of Contents</h2>
